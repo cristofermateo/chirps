@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
-
+DB::listen(function ($query){
+    dump($query->sql);
+});
 
 
 
