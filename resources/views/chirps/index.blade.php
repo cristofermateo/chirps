@@ -23,16 +23,39 @@
                 </div>
             </div>
             <div>
-            </div class="mt-6 bg-white dark:bg-gray-800 shadow-sm rouded-lg divide-y dark:divide-gray-900">
-            @foreach ($chirps as $fila)
-                {{ $fila->message }}
-                {{ $fila->id }}
-                {{ $fila->created_at }}
-                {{ $fila->user->name }}
-                <a href="{{ route('chirps.edit')}}">{{ __('edit Chirp') }}</a>
-                <br>
-                <br>
+                <div class="mt-6 bg-white dark:bg-gray-800 shadow-sm rounded-lg divide-y dark:divide-gray-900">
+
+            @foreach ($chirps as $chirp)
+                {{ $chirp->message }}
+                {{ $chirp->id }}
+                {{ $chirp->created_at }}
+                {{ $chirp->editado }}
+                {{ $chirp->user->name }} {{ $chirp->user_id }}
+                @if ($chirp->created_at != $chirp->updated_at )
+                <small>editado</small>
+                @endif
+
+
+
+
+                @if (auth()->user()->id === $chirp->user_id)
+                <x-dropdown>
+
+                    <x-slot name="trigger">
+                        <button>abrir</button>
+                    </x-slot>
+                    <x-slot name="content">
+                        <x-dropdown-link :href="route('chirps.edit', $chirp)">
+                            {{ __('edit Chirp') }}
+                        </x-dropdown-link>
+
+
+                    </x-slot>
+                </x-dropdown>
+                @endif
+
             @endforeach
             </div>
+
     </div>
 </x-app-layout>

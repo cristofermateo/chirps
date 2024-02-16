@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('chirps.index')" :active="request()->routeIs('chirps.index ')">
+                    <x-nav-link :href="route('chirps.index')" :active="request()->routeIs('chirps.* ')">
                         {{ __('chirps') }}
                     </x-nav-link>
                 </div>
@@ -85,7 +85,7 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>
-        <x-responsive-nav-link :href="route('chirps.index')" :active="request()->routeIs('chirps.index')">
+        <x-responsive-nav-link :href="route('chirps.index')" :active="request()->routeIs('chirps.*')">
             {{ __('chirps') }}
         </x-responsive-nav-link>
     </div>
