@@ -36,26 +36,30 @@
                 @endif
 
 
+                @can ('update', $chirp)
 
-
-                @if (auth()->user()->id === $chirp->user_id)
                 <x-dropdown>
 
                     <x-slot name="trigger">
-                        <button>abrir</button>
-                    </x-slot>
+                    <button>abrir</button>
+                </x-slot>
+
+
+
                     <x-slot name="content">
                         <x-dropdown-link :href="route('chirps.edit', $chirp)">
                             {{ __('edit Chirp') }}
                         </x-dropdown-link>
-
+                        <br><br>
 
                     </x-slot>
+
                 </x-dropdown>
-                @endif
 
-            @endforeach
+                @endcan
+
+
             </div>
-
+            @endforeach
     </div>
 </x-app-layout>
